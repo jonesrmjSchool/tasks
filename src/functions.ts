@@ -1,3 +1,5 @@
+import { findAllByTestId } from "@testing-library/react";
+
 /**
  * Consumes a single temperature in Fahrenheit (a number) and converts to Celsius
  * using this formula:
