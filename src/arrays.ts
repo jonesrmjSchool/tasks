@@ -5,7 +5,13 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    if (numbers.length === 0) {
+        return [];
+    } else if (numbers.length === 1) {
+        return [numbers[0], numbers[0]];
+    } else {
+        return [numbers[0], numbers[numbers.length - 1]];
+    }
 }
 
 /**
@@ -13,7 +19,7 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    return numbers.map((number: number): number => number * 3);
 }
 
 /**
@@ -21,7 +27,9 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    return numbers.map((number: string): number =>
+        isNaN(parseInt(number)) ? 0 : parseInt(number)
+    );
 }
 
 /**
@@ -32,7 +40,14 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    return amounts.map((amount: string): number => {
+        const amountWithoutDollar: string = amount.startsWith("$")
+            ? amount.slice(1)
+            : amount;
+        return isNaN(parseInt(amountWithoutDollar))
+            ? 0
+            : parseInt(amountWithoutDollar);
+    });
 };
 
 /**
@@ -41,7 +56,19 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    return messages
+        .map((message: string): string | null => {
+            if (message.endsWith("!")) {
+                return message.toUpperCase();
+            } else if (message.endsWith("?")) {
+                return null;
+            } else {
+                return message;
+            }
+        })
+        .filter(
+            (message: string | null): message is string => message !== null
+        );
 };
 
 /**
@@ -49,7 +76,10 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    const newArray: string[] = words.filter(
+        (word: string): boolean => word.length < 4
+    );
+    return newArray.length;
 }
 
 /**
@@ -58,7 +88,14 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    if (colors.length === 0) {
+        return true;
+    } else {
+        return colors.every(
+            (color: string): boolean =>
+                color === "red" || color === "blue" || color === "green"
+        );
+    }
 }
 
 /**
@@ -69,7 +106,12 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    const sum: number = addends.reduce(
+        (num1: number, num2: number): number => num1 + num2,
+        0
+    );
+    const output: string = addends.join("+");
+    return `${sum}=${output || "0"}`;
 }
 
 /**
@@ -82,5 +124,27 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    let sum = 0;
+    let foundNegative = false;
+
+    const result: number[] = values.reduce(
+        (numbers: number[], number: number): number[] => {
+            if (!foundNegative && number < 0) {
+                numbers.push(number);
+                numbers.push(sum);
+                foundNegative = true;
+            } else {
+                sum += number;
+                numbers.push(number);
+            }
+            return numbers;
+        },
+        []
+    );
+
+    if (!foundNegative) {
+        result.push(sum);
+    }
+
+    return result;
 }
