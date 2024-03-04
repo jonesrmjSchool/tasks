@@ -7,6 +7,10 @@ import { TwoDice } from "./components/TwoDice";
 import { CycleHoliday } from "./components/CycleHoliday";
 import { Counter } from "./components/Counter";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { DoubleHalf } from "./bad-components/DoubleHalf";
+import { ChooseTeam } from "./bad-components/ChooseTeam";
+import { ColoredBox } from "./bad-components/ColoredBox";
+import { ShoveBox } from "./bad-components/ShoveBox";
 
 function App(): JSX.Element {
     return (
@@ -19,7 +23,7 @@ function App(): JSX.Element {
             </header>
             <p>Hello World!</p>
             <img
-                src="https://yt3.googleusercontent.com/ytc/AIf8zZS-jdEhRvaCve-TKWM5vch80whAkTtIa8KGKfkatw=s900-c-k-c0x00ffffff-no-rj"
+                src="https://upload.wikimedia.org/wikipedia/en/5/59/Jonesrmj_Logo.png"
                 width="200"
                 height="200"
                 alt="jonesrmj logo"
@@ -176,6 +180,14 @@ function App(): JSX.Element {
             <ChangeType></ChangeType>
             <hr />
             <CycleHoliday></CycleHoliday>
+            <hr />
+            <DoubleHalf></DoubleHalf>
+            <hr />
+            <ChooseTeam></ChooseTeam>
+            <hr />
+            <ColoredBox></ColoredBox>
+            <hr />
+            <ShoveBox></ShoveBox>
         </div>
     );
 }
