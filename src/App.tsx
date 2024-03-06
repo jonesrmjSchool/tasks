@@ -11,6 +11,11 @@ import { DoubleHalf } from "./bad-components/DoubleHalf";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
 import { ColoredBox } from "./bad-components/ColoredBox";
 import { ShoveBox } from "./bad-components/ShoveBox";
+import { CheckAnswer } from "./form-components/CheckAnswer";
+import { GiveAttempts } from "./form-components/GiveAttempts";
+import { EditMode } from "./form-components/EditMode";
+import { ChangeColor } from "./form-components/ChangeColor";
+import { MultipleChoiceQuestion } from "./form-components/MultipleChoiceQuestion";
 
 function App(): JSX.Element {
     return (
@@ -169,6 +174,8 @@ function App(): JSX.Element {
                 automatically reload.
             </p>
             <hr></hr>
+            <ShoveBox></ShoveBox>
+            <hr></hr>
             <Counter></Counter>
             <hr />
             <RevealAnswer></RevealAnswer>
@@ -188,6 +195,19 @@ function App(): JSX.Element {
             <ColoredBox></ColoredBox>
             <hr />
             <ShoveBox></ShoveBox>
+            <hr />
+            <CheckAnswer expectedAnswer={"42"}></CheckAnswer>
+            <hr />
+            <GiveAttempts></GiveAttempts>
+            <hr />
+            <EditMode></EditMode>
+            <hr />
+            <ChangeColor></ChangeColor>
+            <hr />
+            <MultipleChoiceQuestion
+                options={["a", "b", "c"]}
+                expectedAnswer="b"
+            ></MultipleChoiceQuestion>
         </div>
     );
 }
